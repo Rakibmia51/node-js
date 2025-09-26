@@ -45,10 +45,46 @@ const fs = require('fs');
 // })
 
 
-fs.exists('demo2.txt', (result)=>{
-    if(result){
-        console.log("found")
-    }else{
-        console.log("not found");
-    }
-})
+// fs.exists('demo2.txt', (result)=>{
+//     if(result){
+//         console.log("found")
+//     }else{
+//         console.log("not found");
+//     }
+// })
+
+
+// ..................................................
+// os, path
+
+const os = require("os");
+console.log(os.userInfo());
+console.log(os.homedir());
+console.log(os.hostname());
+
+console.log(os.totalmem());
+console.log(os.freemem());
+
+console.log("OS Platform:", os.platform());
+console.log("OS Type:", os.type());
+
+// Destruction 
+const {totalmem, freemem} = require("os");
+console.log(totalmem());
+console.log(freemem());
+
+//------------------------------------------------------
+
+
+
+//Path Module
+console.log(__dirname);
+console.log(__filename);
+
+const path = require("path");
+
+const extensionName = path.extname("index.html");
+console.log(extensionName);
+
+const joinName = path.join(__dirname + "/../views");
+console.log(joinName);
