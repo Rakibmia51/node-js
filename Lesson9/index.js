@@ -17,16 +17,10 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
-app.get("/userId/:id/userAge/:age", (req, res)=>{
-//    const id =  req.query.id;  //http request with query parameter
-//    const name =  req.query.name; //http request with query parameter
-   
-//    const {id, name}= req.query; //http request with query parameter
-//    res.send(`<h1>Student name is : ${name} id is : ${id}</h1>`);
- 
-const id = req.params.id; //http request with route parameter and Header
-const age = req.params.age;
-res.send(`<h1>Student id is : ${id}, age is : ${age}</h1>`);
+app.get("/", (req, res)=>{
+const id = req.header('id');
+const name = req.header('name');
+res.send(`<h1>Student id is :${id} , age is :${name} </h1>`);
 
 })
 
