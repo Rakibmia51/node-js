@@ -12,16 +12,22 @@
 // how to make request with query parameter?
 
 
+// http request with route parameter and
 const express = require('express');
 const app = express();
 const PORT = 3000;
 
-app.get("/", (req, res)=>{
+app.get("/userId/:id/userAge/:age", (req, res)=>{
 //    const id =  req.query.id;  //http request with query parameter
 //    const name =  req.query.name; //http request with query parameter
    
-   const {id, name}= req.query; //http request with query parameter
-   res.send(`<h1>Student name is : ${name} id is : ${id}</h1>`);
+//    const {id, name}= req.query; //http request with query parameter
+//    res.send(`<h1>Student name is : ${name} id is : ${id}</h1>`);
+ 
+const id = req.params.id; //http request with route parameter and Header
+const age = req.params.age;
+res.send(`<h1>Student id is : ${id}, age is : ${age}</h1>`);
+
 })
 
 
