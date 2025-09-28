@@ -31,19 +31,19 @@ const server = http.createServer((req, res)=>{
     }
 
     if(req.url === '/'){
-            handleReadFile(200, "./views/index.html")
+            handleReadFile(200, "./views/index.html");
     }
 
     else if(req.url === '/about'){
-            handleReadFile(200, "./views/about.html")
+            handleReadFile(200, "./views/about.html");
     }
 
     else if(req.url === '/contact'){
-        handleReadFile(200, "./views/contact.html")
+        handleReadFile(200, "./views/contact.html");
     }
 
     else {
-         handleReadFile(200, "./views/error.html")
+         handleReadFile(200, "./views/error.html");
     }
 });
 
