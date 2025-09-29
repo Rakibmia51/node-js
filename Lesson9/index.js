@@ -25,11 +25,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // JSON body পার্স করা
 app.use(bodyParser.json());
 
+app.get("/register", (req, res)=>{
+    res.sendFile(__dirname + "/index.html");
+})
 
-app.post('/user', (req, res) => {
-  const name = req.body.name; // { name: "Rakib", age: 25 }
-  const age = req.body.age;
-  res.send(`Hello ${name} you are ${age}`);
+
+app.post('/register', (req, res) => {
+//   const name = req.body.name; // { name: "Rakib", age: 25 }
+//   const age = req.body.age;
+//   res.send(`Hello ${name} you are ${age}`);
+
+    const fullName = req.body.fullName;
+    const age = req.body.age;
+    res.send(`Hello! ${fullName} and your age: ${age}`)
 });
 
 
