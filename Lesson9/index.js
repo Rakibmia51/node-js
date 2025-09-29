@@ -10,19 +10,35 @@
 
 // HTTP requests
 // how to make request with query parameter?
+// http request with route parameter and Header
+// how to make post request with josn or from data
+    // - Install body-parser npm package | npm link https://www.npmjs.com/package/body-parser
 
 
-// http request with route parameter and
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const PORT = 3001;
+const bodyParser = require('body-parser');
 
-app.get("/", (req, res)=>{
-const id = req.header('id');
-const name = req.header('name');
-res.send(`<h1>Student id is :${id} , age is :${name} </h1>`);
 
+app.use(bodyParser.urlencoded({ extended: false }));
+// JSON body পার্স করা
+app.use(bodyParser.json());
+
+app.get("/register", (req, res)=>{
+    res.sendFile(__dirname + "/index.html");
 })
+
+
+app.post('/register', (req, res) => {
+//   const name = req.body.name; // { name: "Rakib", age: 25 }
+//   const age = req.body.age;
+//   res.send(`Hello ${name} you are ${age}`);
+
+    const fullName = req.body.fullName;
+    const age = req.body.age;
+    res.send(`Hello! ${fullName} and your age: ${age}`)
+});
 
 
 app.listen(PORT, ()=>{
