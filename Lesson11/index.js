@@ -4,7 +4,7 @@
 // -> What are the different types of middleware?
 
 // step 01: npm init -y
-// step 02: npm install modemon express
+// step 02: npm install nodemon express
 // step 03: server create 
 
 

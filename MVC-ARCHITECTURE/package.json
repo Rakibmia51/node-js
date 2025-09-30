@@ -1,5 +1,5 @@
 {
-  "name": "lesson11",
+  "name": "mvc-architecture",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -9,9 +9,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
     "express": "^5.1.0",
     "nodemon": "^3.1.10"
-  },
-  "description": ""
+  }
 }
