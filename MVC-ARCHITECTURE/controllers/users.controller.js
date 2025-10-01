@@ -7,6 +7,7 @@ exports.getUsers = (req, res)=>{
 };
 
 exports.saveUser = (req, res)=>{
+   
     // res.send(htmlForm)
 
     const name = req.body.name;
