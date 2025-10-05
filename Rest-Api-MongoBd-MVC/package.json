@@ -9,12 +9,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "step : 01 npm init -y\r step : 02 npm install express dotenv cors mongoose nodemon",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "mongoose": "^8.19.0",
     "nodemon": "^3.1.10"
-  }
+  },
+  "devDependencies": {}
 }
