@@ -6,6 +6,28 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome to server ESJ</h1>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <form action="/" method="post">
+            <input type="text" name="pLanguage" id="pLanguage" placeholder="programming language">
+            <button type="submit">add</button>
+        </form>
+
+        <ul>
+            <li><%= plNames %></li>
+        </ul>
+    </main>
+
+    <footer>
+        <p>All right reserved by &copy; Rakibul Hasan</p>
+    </footer>
 </body>
 </html>
