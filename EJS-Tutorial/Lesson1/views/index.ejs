@@ -22,7 +22,11 @@
         </form>
 
         <ul>
-            <li><%= plNames %></li>
+            <% if(plNames.length>0){ %>
+                <li><%= plNames %></li>
+           <% }else{ %>
+                <p>No Data found</p>
+           <% } %>
         </ul>
     </main>
 
