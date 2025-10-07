@@ -23,7 +23,10 @@
 
         <ul>
             <% if(plNames.length>0){ %>
-                <li><%= plNames %></li>
+                <!-- <li><%= plNames %></li> -->
+                 <% for(let x=0; x<plNames.length; x++){ %>
+                    <li><%= plNames[x] %></li>
+                 <% } %>
            <% }else{ %>
                 <p>No Data found</p>
            <% } %>
