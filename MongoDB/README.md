@@ -142,3 +142,13 @@ Server will start on:
    - collection:
       - show collections
       - db.createCollection(name, option)
+
+
+## CRUD Operations - insert / create
+http://docs.mongodb.com/manual/crud/
+#### Database is collection of documents
+- Document (row/records)- field and value pair & BSON format
+- Collection (table)
+- db.collectionName.insertOne()
+- db.collectionName.insertMany()
+- db.collectionName.insert()
