@@ -7,10 +7,14 @@ app.use(express.static("public"));
 
 app.set("view engine", "ejs");
 
-let pLanguages = [];
+let pLanguages  = [];
 
 app.get('/', (req, res) => {
   res.render("index", {plNames: pLanguages})
+})
+
+app.get('/contact', (req, res) => {
+  res.render("contact", {})
 })
 
 app.post('/', (req, res) => {

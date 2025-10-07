@@ -1,33 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+<%- include("layout/header") %>
 
-    <main>
+
+    <main class="center">
         <form action="/" method="post">
             <input type="text" name="pLanguage" id="pLanguage" placeholder="programming language">
             <button type="submit">add</button>
         </form>
 
         <ul>
-            <li><%= plNames %></li>
+            <% if(plNames.length>0){ %>
+                <!-- <li><%= plNames %></li> -->
+                 <% for(let x=0; x<plNames.length; x++){ %>
+                    <li><%= plNames[x] %></li>
+                 <% } %>
+           <% }else{ %>
+                <p>No Data found</p>
+           <% } %>
         </ul>
     </main>
 
-    <footer>
-        <p>All right reserved by &copy; Rakibul Hasan</p>
-    </footer>
-</body>
-</html>
+<%- include("layout/footer") %>
+
+
