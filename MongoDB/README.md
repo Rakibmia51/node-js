@@ -146,9 +146,63 @@ Server will start on:
 
 ## CRUD Operations - insert / create
 http://docs.mongodb.com/manual/crud/
+
 #### Database is collection of documents
 - Document (row/records)- field and value pair & BSON format
 - Collection (table)
 - db.collectionName.insertOne()
 - db.collectionName.insertMany()
 - db.collectionName.insert()
+
+### CRUD | Read documents
+-  db.users.find()  সব ডেটা দেখায়
+- db.users.find().pretty()  সুন্দর ফরম্যাটে দেখায়
+- db.users.find({ age: 25 }) নির্দিষ্ট   শর্ত অনুযায়ী ডেটা খোঁজে
+- db.users.findOne({ name: "Rakibul" }) একটিমাত্র ডকুমেন্ট রিটার্ন করে
+
+### CRUD | Update Documents
+
+🔹 Update One
+```
+
+db.users.updateOne(
+  { name: "Rakibul" },
+  { $set: { age: 26 } }
+)
+
+```
+
+🔹 Update Many
+```
+
+db.users.updateMany(
+  { age: { $lt: 30 } },
+  { $set: { status: "Active" } }
+)
+
+```
+
+
+### CRUD | Delete Documents
+🔸 Delete One
+
+```
+db.users.deleteOne({ name: "Sajid" })
+
+````
+🔸 Delete Many
+
+```
+db.users.deleteMany({ age: { $gt: 25 } })
+
+```
+
+## Install mongodb compass for PC
+
+
+
+### Terminal code
+<p>npm package install
+mongoose</p>
+
+https://mongoosejs.com/docs/
