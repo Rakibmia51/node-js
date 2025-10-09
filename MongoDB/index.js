@@ -55,6 +55,9 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+// CRUD - Create, Read, Update, Delete
+
+// Create
 app.post('/products', async (req, res) => {
   try {
     // get Data from request body
@@ -62,30 +65,35 @@ app.post('/products', async (req, res) => {
         //  const price = req.body.price;
         //  const description = req.body.description;
 
-    // const newProduct = new Product({ // For single Data
-    //   title : req.body.title,
-    //   price : req.body.price,
-    //   description: req.body.description,
-    // })
-    // const productData = await newProduct.save(); // For single Data 
+    const newProduct = new Product({ // For single Data
+      title : req.body.title,
+      price : req.body.price,
+      description: req.body.description,
+    })
+    const productData = await newProduct.save(); // For single Data 
     
-    const productData = await Product.insertMany([ // For Multi Data
-      {
-        title : "Apple Phone",
-        price : 150000,
-        description: "This is Brand Phone",
-      },
-       {
-        title : "Tecno Phone",
-        price : 10000,
-        description: "This is Low Brand Phone",
-      },
-       {
-        title : "Realme Phone",
-        price : 22000,
-        description: "This is Standerd Brand Phone",
-      }
-    ]);
+    // const productData = await Product.insertMany([ // For Multi Data
+    //   {
+    //     title : "Apple Phone",
+    //     price : 150000,
+    //     description: "This is Brand Phone",
+    //   },
+    //    {
+    //     title : "Tecno Phone",
+    //     price : 10000,
+    //     description: "This is Low Brand Phone",
+    //   },
+    //    {
+    //     title : "Realme Phone",
+    //     price : 22000,
+    //     description: "This is Standerd Brand Phone",
+    //   },
+    //   {
+    //     title : "Nokia Phone",
+    //     price : 25000,
+    //     description: "This is Standerd Phone",
+    //   }
+    // ]);
     res.status(201).send(productData)
 
   } catch (error) {
@@ -95,6 +103,74 @@ app.post('/products', async (req, res) => {
  
 })
 
+// GET: /products -> Return All products
+app.get("/products", async (req, res)=>{
+  try {
+    const price = req.query.price;
+    let products;
+    if(price){
+        products = await Product.find({price: {$gt: price}}) //.limit();
+    }else{
+        products = await Product.find()
+    }
+    
+    if(products){
+     res.status(200).send({
+        success: true,
+        message: "return all product",
+        data: products
+      })
+    }else{
+       res.status(404).send({
+        success: false,
+        message: "Products not found"
+      })
+    }
+  } catch (error) {
+     res.status(500).send({
+      message: error.message})
+  }
+})
+
+// GET: /products/:id -> Return a specific products
+app.get("/products/:id", async (req, res)=>{
+  try {
+    const id = req.params.id;
+    const product = await Product.findOne({_id: id}).select
+    ({
+      title: 1, 
+      _id:  0,
+      price: 1,
+      description:  1
+
+    });
+    if(product){
+      res.status(200).send({
+        success: true,
+        message: "return single product",
+        data: product
+      })
+    }else{
+      res.status(404).send({
+        success: false,
+        message: "Product not found"
+      })
+    }
+  } catch (error) {
+     res.status(500).send({
+      message: error.message})
+  }
+})
+
+// DATABASE -> collections(table) -> document(row)
+
+// POST: /products -> Create a products
+// GET: /products -> Return All products
+// GET: /products/:id -> Return a specific products
+// PUT: /products/:id -> Update a products based on id
+// DELETE: /products/:id -> Delete a products based on id
+
+
 app.listen(port, async() => {
   console.log(`Example app listening on port http://localhost:${port}`)
     await connectDB()
@@ -102,4 +178,5 @@ app.listen(port, async() => {
 })
 
 
-// DATABASE -> collections(table) -> document(row)
+
+
