@@ -207,6 +207,41 @@ app.delete("/products/:id", async (req, res)=>{
   }
 })
 
+// PUT: /products/:id -> Update a products based on id
+app.put("/products/:id", async (req, res)=>{
+  try {
+    const id = req.params.id;
+     const updatedProduct = await Product
+     .findByIdAndUpdate(
+    //  .updateOne(
+     {_id: id}, {
+      $set:{
+        title : req.body.title,
+        price : req.body.price,
+        rating : req.body.rating,
+        description: req.body.description,
+      }
+    },
+    {new: true}
+  )
+    if(updatedProduct){
+      res.status(200).send({
+        success: true,
+        message: "Updated single product",
+        data: updatedProduct
+      });
+    }else{
+      res.status(404).send({
+        success: false,
+        message: "Product was not Updated with this id"
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
+      message: error.message})
+  }
+})
+
 // DATABASE -> collections(table) -> document(row)
 
 // POST: /products -> Create a products
