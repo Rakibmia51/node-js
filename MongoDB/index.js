@@ -118,13 +118,20 @@ app.get("/products", async (req, res)=>{
     if(price && rating){
         // products = await Product.find({price: {$gt: price}}) //.limit();
          products = await Product.find({
-            $and:[
+            $or:[
               {price: {$gt: price}}, 
               {rating: {$gt: rating}}
             ]
         })
+        //.countDocuments();
+        // .sort({price: 1})
+        // .select({title: 1}) //_id: 0
+
     }else{
         products = await Product.find()
+      // .countDocuments();
+        // .sort({price: 1})
+        // .select({title: 1})  // _id: 0
     }
     
     if(products){
@@ -166,11 +173,71 @@ app.get("/products/:id", async (req, res)=>{
     }else{
       res.status(404).send({
         success: false,
-        message: "Product not found"
+        message: "Product was not found with this id"
       })
     }
   } catch (error) {
      res.status(500).send({
+      message: error.message})
+  }
+})
+
+// DELETE: /products/:id -> Delete a products based on id
+app.delete("/products/:id", async (req, res)=>{
+  try {
+    const id = req.params.id;
+    const product = await Product
+    .findByIdAndDelete({_id: id})
+    // .deleteOne({_id: id});
+    if(product){
+      res.status(200).send({
+        success: true,
+        message: "Deleted single product",
+        data: product
+      });
+    }else{
+      res.status(404).send({
+        success: false,
+        message: "Product was not Deleted with this id"
+      });
+    }
+  } catch (error) {
+     res.status(500).send({
+      message: error.message})
+  }
+})
+
+// PUT: /products/:id -> Update a products based on id
+app.put("/products/:id", async (req, res)=>{
+  try {
+    const id = req.params.id;
+     const updatedProduct = await Product
+     .findByIdAndUpdate(
+    //  .updateOne(
+     {_id: id}, {
+      $set:{
+        title : req.body.title,
+        price : req.body.price,
+        rating : req.body.rating,
+        description: req.body.description,
+      }
+    },
+    {new: true}
+  )
+    if(updatedProduct){
+      res.status(200).send({
+        success: true,
+        message: "Updated single product",
+        data: updatedProduct
+      });
+    }else{
+      res.status(404).send({
+        success: false,
+        message: "Product was not Updated with this id"
+      });
+    }
+  } catch (error) {
+    res.status(500).send({
       message: error.message})
   }
 })
