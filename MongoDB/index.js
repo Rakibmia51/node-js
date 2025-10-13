@@ -118,13 +118,20 @@ app.get("/products", async (req, res)=>{
     if(price && rating){
         // products = await Product.find({price: {$gt: price}}) //.limit();
          products = await Product.find({
-            $and:[
+            $or:[
               {price: {$gt: price}}, 
               {rating: {$gt: rating}}
             ]
         })
+        //.countDocuments();
+        .sort({price: 1})
+        .select({title: 1}) //_id: 0
+
     }else{
         products = await Product.find()
+      // .countDocuments();
+        .sort({price: 1})
+        .select({title: 1})  // _id: 0
     }
     
     if(products){
