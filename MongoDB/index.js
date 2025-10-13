@@ -124,14 +124,14 @@ app.get("/products", async (req, res)=>{
             ]
         })
         //.countDocuments();
-        .sort({price: 1})
-        .select({title: 1}) //_id: 0
+        // .sort({price: 1})
+        // .select({title: 1}) //_id: 0
 
     }else{
         products = await Product.find()
       // .countDocuments();
-        .sort({price: 1})
-        .select({title: 1})  // _id: 0
+        // .sort({price: 1})
+        // .select({title: 1})  // _id: 0
     }
     
     if(products){
@@ -173,8 +173,33 @@ app.get("/products/:id", async (req, res)=>{
     }else{
       res.status(404).send({
         success: false,
-        message: "Product not found"
+        message: "Product was not found with this id"
       })
+    }
+  } catch (error) {
+     res.status(500).send({
+      message: error.message})
+  }
+})
+
+// DELETE: /products/:id -> Delete a products based on id
+app.delete("/products/:id", async (req, res)=>{
+  try {
+    const id = req.params.id;
+    const product = await Product
+    .findByIdAndDelete({_id: id})
+    // .deleteOne({_id: id});
+    if(product){
+      res.status(200).send({
+        success: true,
+        message: "Deleted single product",
+        data: product
+      });
+    }else{
+      res.status(404).send({
+        success: false,
+        message: "Product was not Deleted with this id"
+      });
     }
   } catch (error) {
      res.status(500).send({
