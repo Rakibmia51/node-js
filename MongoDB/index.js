@@ -22,11 +22,20 @@ const productsSchema = new mongoose.Schema({
     //   values: ["iphone", "QPhone"],
     //   message: "{VALUE} is not supported",
     // },
+
+    // custom validate------
+    // validate: {
+    //   validator: function(v){
+    //     return v.length === 10
+    //   },
+    //   message: (props)=>`${props.value} is not a valid title `
+    // }
   },
   price:{
     type:Number,
-    min: [20, "Minimum price of 20"],
-    max: [200, "Maximum price of 200"],
+
+    // min: [20, "Minimum price of 20"],
+    // max: [200, "Maximum price of 200"],
     required: true,
   },
    rating:{
@@ -41,6 +50,18 @@ const productsSchema = new mongoose.Schema({
     type:String,
     required: true,
   },
+  phone: {
+    type: String,
+    required: [true, "Phone number is required"],
+    validate: {
+      validator: function(v){
+        const phoneRegex = /\d{3}-\d{3}-\d{4}/;
+        return phoneRegex.test(v);
+      },
+      message: (props)=> `${props.value} is not a valid phone number`
+    },
+  },
+
   createdAt: {
     type : Date,
     default: Date.now
@@ -89,6 +110,7 @@ app.post('/products', async (req, res) => {
       price : req.body.price,
       rating : req.body.rating,
       description: req.body.description,
+      phone: req.body.phone,
     })
     const productData = await newProduct.save(); // For single Data 
     
@@ -235,6 +257,7 @@ app.put("/products/:id", async (req, res)=>{
         price : req.body.price,
         rating : req.body.rating,
         description: req.body.description,
+        phone: req.body.phone,
       }
     },
     {new: true}
