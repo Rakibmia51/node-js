@@ -182,7 +182,6 @@ db.users.updateMany(
 
 ```
 
-
 ### CRUD | Delete Documents
 🔸 Delete One
 
@@ -209,3 +208,7 @@ https://mongoosejs.com/docs/
 
 ## MongoDB Documentation
 https://www.mongodb.com/docs/get-started/?language=nodejs
+
+## mongoose custom schema validation
+https://mongoosejs.com/docs/validation.html#custom-validators
+example: https://regexr.com/3e48o
