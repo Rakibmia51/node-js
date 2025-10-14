@@ -1,0 +1,25 @@
+## REST API without database | MVC
+ - REST API routes planning
+ - installing and importing packages
+    - Install : npm init -y 
+        - npm install express  
+        - npm install nodemon 
+        - npm install dotenv
+        - npm install cors
+        - npm install body-parser
+        - npm install uuid
+ - creating the express server
+ - creating a home route,
+ - handling invalid route
+ - handling server error
+ - creating MVC architectures
+    - model
+    - controller
+    - routers
+    - views
+ - GET Method 
+ - POST Method
+ - PUT Method
+ - DELETE Method
+ - deploy REST  API
+ - pushing on GitHub
