@@ -1,0 +1,23 @@
+{
+  "name": "rest-db-2025",
+  "version": "1.0.0",
+  "description": "- create an express server\r - API testing with thunderclient\r - error handler\r - routes\r - controller\r - creating other routes\r - MongoDB atlas credentials\r - env setup\r - mongoose for MongoDB setup\r - schema for model\r - Create a user\r -  Read users\r - Read user by id\r - Delete a user by id\r - Update a user by id\r - Delete the user\r - deploy a server on others",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongodb": "^6.20.0",
+    "mongoose": "^8.19.1",
+    "nodemon": "^3.1.10",
+    "uuid": "^13.0.0"
+  }
+}

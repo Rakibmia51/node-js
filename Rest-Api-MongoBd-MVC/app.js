@@ -1,3 +1,4 @@
+
 const express = require('express');
 const cors = require('cors');
 require("./config/db");
@@ -18,6 +19,7 @@ app.use("/api/users",userRouter);
 // api/users/: id : PATCH
 // api/users/: id : DELETE
 
+// Home Route
 app.get("/", (req, res)=>{
     res.sendFile(__dirname + "/./views/index.html")
 });

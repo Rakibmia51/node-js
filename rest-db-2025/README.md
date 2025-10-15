@@ -1,0 +1,28 @@
+## REST API with MongoDB database | MVC
+
+- NPM Install
+    - npm install express
+    - npm install mongoose
+    - npm install nodemon
+    - npm install cors
+    - npm install body-parser
+    - npm install dotenv
+    - npm install uuid
+    - npm install mongoDB
+- create an express server
+- API testing with thunderclient
+- error handler
+- routes
+- controller
+- creating other routes
+- MongoDB atlas credentials
+- env setup
+- mongoose for MongoDB setup
+- schema for model
+- Create a user
+-  Read users
+- Read user by id
+- Delete a user by id
+- Update a user by id
+- Delete the user
+- deploy a server on others
