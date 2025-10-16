@@ -72,7 +72,7 @@ app.post("/register",upload.single("image"), async (req, res)=>{
 
 
 
-app.get("/test", (req, res)=>{
+app.get("/", (req, res)=>{
     res.send("welcome to site")
 })
 
