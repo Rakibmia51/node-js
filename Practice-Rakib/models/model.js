@@ -1,19 +1,29 @@
-const {v4: uuidv4} = require('uuid')
 
-// Model Data
-const users = [
-    {
-        id: uuidv4(),
-        name: "Rakib mia",
-        email: "rakib@gmail.com",
-        password: "12345"
-    },
-    {
-        id: uuidv4(),
-        name: "Sakibul mia",
-        email: "sakib@gmail.com",
-        password: "123456"
-    }
-]
+const  mongoose  = require("mongoose");
 
-module.exports = users;
+// create users schema
+const usersSchema = mongoose.Schema({
+    id:{
+    type:String,
+    required: true
+  },
+  name:{
+    type:String,
+    required: [true, "name is required"]
+  },
+  email:{
+    type: String,
+    required: [true, "email is required"]
+  },
+  password:{
+    type: Number,
+    required: [true, "number is required"]
+  },
+  createdAt:{
+    type: Date,
+    default: Date.now
+  }
+})
+
+// create user model
+module.exports =  mongoose.model("User", usersSchema);

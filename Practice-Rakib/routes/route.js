@@ -1,6 +1,12 @@
-const { AddUsers, deleteUsers, findUsers, updateUser } = require("../controllers/controller");
-
 const router = require("express").Router();
+
+const { 
+    AddUsers, 
+    deleteUsers, 
+    findUsers, 
+    updateUser } = require("../controllers/controller");
+
+
 
 
 
@@ -8,7 +14,7 @@ const router = require("express").Router();
 router.post('/', AddUsers)
 
 // Update users
-router.put('/:id', updateUser);
+router.patch('/:id', updateUser);
 // delete users
 router.delete('/:id', deleteUsers)
 // get api users
