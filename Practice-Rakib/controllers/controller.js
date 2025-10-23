@@ -12,7 +12,8 @@ const AddUsers = async (req, res)=>{
                 password: Number(req.body.password)
             })
              await newUser.save();
-             res.status(201).send(newUser)
+            //  res.status(201).send(newUser)
+             res.redirect("/users");
 
     } catch (error) {
             res.status(404).send(error.message)
@@ -33,7 +34,7 @@ const updateUser = async (req, res)=>{
         try {
             const id = req.params.id;
             const updateUser = await User
-            .findByIdAndUpdate(
+            .updateOne(
             //  .updateOne(
             {id: id}, {
             $set:{
@@ -44,7 +45,7 @@ const updateUser = async (req, res)=>{
             },
             {new: true}
             )
-            if(User){
+            if(updateUser){
 
             res.status(200).send({
                 success: true,
@@ -90,5 +91,18 @@ const findUsers = async (req, res) => {
   }
 }
 
+// get- users/:id
+const getOneUsers = async (req, res)=>{
+    try {
+        const user = await User.findOne({
+            id: req.params.id
+        })
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+}
 
-module.exports = {AddUsers, deleteUsers, findUsers, updateUser}
+
+
+module.exports = {AddUsers, deleteUsers, findUsers, updateUser, getOneUsers}

@@ -4,7 +4,8 @@ const {
     AddUsers, 
     deleteUsers, 
     findUsers, 
-    updateUser } = require("../controllers/controller");
+    updateUser, 
+    getOneUsers} = require("../controllers/controller");
 
 
 
@@ -18,7 +19,8 @@ router.patch('/:id', updateUser);
 // delete users
 router.delete('/:id', deleteUsers)
 // get api users
-router.get('/', findUsers)
-
+router.get('/api', findUsers)
+// get api users
+router.get('/api/:id', getOneUsers)
 
 module.exports = router;

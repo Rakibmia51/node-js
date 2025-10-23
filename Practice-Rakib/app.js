@@ -1,6 +1,8 @@
 
 const express = require('express')
 const cors = require("cors")
+require("./config/db");
+
 const bodyParser = require('body-parser')
 
 
@@ -24,6 +26,12 @@ app.use("/users", usersRouter);
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/views/index.html")
 })
+
+// From HTML Route
+app.get('/users', (req, res) => {
+  res.sendFile(__dirname + "/views/users.html")
+})
+
 
 // routers error
 app.use((req, res, next)=>{
