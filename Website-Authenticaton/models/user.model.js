@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const encrypt = require('mongoose-encryption');
+// const encrypt = require('mongoose-encryption');
 
 
 const usersSchema = new mongoose.Schema({
@@ -22,10 +22,10 @@ const usersSchema = new mongoose.Schema({
 })
 
 // Encryption databse - start
-const encKey = process.env.ENC_KEY;
-usersSchema.plugin(encrypt, { 
-    secret: encKey, 
-    encryptedFields: ['password'] });
-// End
+// const encKey = process.env.ENC_KEY;
+// usersSchema.plugin(encrypt, { 
+//     secret: encKey, 
+//     encryptedFields: ['password'] });
+// // End
 
 module.exports = mongoose.model("user", usersSchema)
