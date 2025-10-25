@@ -17,3 +17,10 @@ npm i express nodemon dotenv cors mongoose
 
 Password Cheker Online free
 http://password-checker.online-domain-tools.com/
+
+authentication step : 01
+    Lower level authentication
+authentication step : 02
+    npm i mongoose-encryption
+    // URL Test
+    https://cryptii.com/ 

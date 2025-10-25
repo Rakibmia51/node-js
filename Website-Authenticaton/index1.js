@@ -1,4 +1,4 @@
-// database encryption authentication
+// match from database authentication
 
 require("dotenv").config();
 const express = require('express')
