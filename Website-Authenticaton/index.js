@@ -3,6 +3,8 @@ const express = require('express')
 const cors = require("cors");
 const  mongoose  = require("mongoose");
 
+const User = require("./models/user.model")
+
 const app = express()
 
 app.use(cors());
@@ -12,7 +14,7 @@ app.use(express.json());
 
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 4000;
 const dbUrl = process.env.DB_URL;
 
 mongoose
@@ -36,28 +38,35 @@ app.get('/', (req, res) => {
 
 
 // Register
-app.post('/register', (req, res) => {
+app.post('/register', async (req, res) => {
     try {
         const {username, email, password} = req.body;
-        const newUser = {
+        const newUser = new User ({
             username,
             email,
             password
-        }
-        res.status(201).json({
-        message: "User is created",
-        newUser
-        })
+        }) 
+       await newUser.save();
+        res.status(201).json(newUser)
     } catch (error) {
-        
+         res.status(500).json(error.message)
     }
 })
 
 // Login
-app.post('/login', (req, res) => {
-  res.status(200).json({
-    message: "User is Login"
-  })
+app.post('/login', async (req, res) => {
+   try {
+        const {email, password} = req.body;
+        const user = await User.findOne({email: email})
+            if(user && user.password === password){
+                res.status(200).json({status : 'valid user'})
+            }else{
+                 res.status(200).json({status : 'user not found'}) 
+            }
+       
+    } catch (error) {
+         res.status(500).json(error.message)
+    }
 })
 
 
