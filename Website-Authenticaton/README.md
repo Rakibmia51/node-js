@@ -39,3 +39,22 @@ http://password-checker.online-domain-tools.com/
 
     // URL Test
     https://cryptii.com/ 
+
+## Session based & Token based | authentication step : 05
+    npm i bcrypt
+    type: bcrypt
+
+### Session based authentication
+- Cookies & Session
+    - Passport with local strategy
+    - Passport with google oauth-20
+- Passport framework - 
+    1. Passport main library (Session management)
+        - Passport
+        - express-session
+    2. strategy - user authentication
+        - local strategy - passport-local
+        - passport-google
+
+### Token based authentication
+- Access token
