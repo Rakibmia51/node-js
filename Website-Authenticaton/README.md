@@ -32,3 +32,10 @@ http://password-checker.online-domain-tools.com/
 
     // URL Test
     https://cryptii.com/ 
+
+## Salting and Hashing Password | authentication step : 04
+    npm i bcrypt
+    type: bcrypt
+
+    // URL Test
+    https://cryptii.com/ 
