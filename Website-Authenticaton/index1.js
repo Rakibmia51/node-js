@@ -1,13 +1,9 @@
-// Salting and Hashing Password | authentication
+// match from database authentication
 
 require("dotenv").config();
 const express = require('express')
 const cors = require("cors");
 const  mongoose  = require("mongoose");
-
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
-
 
 const User = require("./models/user.model")
 
@@ -46,16 +42,14 @@ app.get('/', (req, res) => {
 // Register
 app.post('/register', async (req, res) => {
     try {
-        bcrypt.hash(req.body.password, saltRounds, async function(err, hash) {
-            const newUser = new User ({
-            username: req.body.username,
-            email: req.body.email,
-            password: hash
-             })
-             await newUser.save();
-            res.status(201).json(newUser)
-        });
-
+        const {username, email, password} = req.body;
+        const newUser = new User ({
+            username,
+            email,
+            password
+        }) 
+       await newUser.save();
+        res.status(201).json(newUser)
     } catch (error) {
          res.status(500).json(error.message)
     }
@@ -64,17 +58,12 @@ app.post('/register', async (req, res) => {
 // Login
 app.post('/login', async (req, res) => {
    try {
-        const email = req.body.email;
-        const password = req.body.password;
+        const {email, password} = req.body;
         const user = await User.findOne({email: email})
-            if(user){
-                bcrypt.compare(password, user.password, function(err, result) {
-                    if(result === true){
-                        res.status(201).json({status : 'valid user'}) 
-                    }else{
-                        res.status(200).json({status : 'user not found'}) 
-                        }
-                });
+            if(user && user.password === password){
+                res.status(200).json({status : 'valid user'})
+            }else{
+                 res.status(200).json({status : 'user not found'}) 
             }
 
     } catch (error) {

@@ -1,7 +1,6 @@
 {
-  "name": "website-authenticaton",
+  "name": "passport-tutorial-2025",
   "version": "1.0.0",
-  "description": "Authentication & Security",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,15 +9,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
-    "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
-    "md5": "^2.3.0",
-    "mongodb": "^6.20.0",
-    "mongoose": "^8.19.1",
-    "mongoose-encryption": "^2.1.2",
+    "mongoose": "^8.19.2",
     "nodemon": "^3.1.10"
   }
 }
