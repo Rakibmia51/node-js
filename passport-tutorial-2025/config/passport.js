@@ -12,10 +12,20 @@ passport.use(
                 return done(null, false),{message: "Incorrect Username"} 
                 }
                 
-            if(!bcrypt.compare(password, user.password)){
-                return done(null, false),{message: "Incorrect Password"} 
+            if(!bcrypt.compareSync(password, user.password)){
+                return done(null, false,{message: "Incorrect Password"}) 
             }
-                return done(null, user);
+
+
+             // পাসওয়ার্ড তুলনা (সঠিকভাবে await সহ)
+
+            // const isMatch = await bcrypt.compare(password, user.password);
+            // if (!isMatch) {
+            //     return done(null, false, { message: "Incorrect Password" });
+            // }
+
+
+            return done(null, user);
             } catch (error) {
             return done(error);
         }
