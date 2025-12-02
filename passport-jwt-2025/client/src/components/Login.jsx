@@ -8,17 +8,21 @@ const Login = () => {
     const [password, setPassword] = useState("")
 
      useEffect(()=>{
-            const token = localStorage.getItem("token")
+            const token = localStorage.getItem("token");
+
+            // যদি token না থাকে → stay on login
+            if (!token) return;
+
             axios.get("http://localhost:5000/profile", {
-                headers:{
+                headers: {
                     Authorization: token
                 }
             })
-            .then((res)=> navigate("/profile"))
-            .catch((err)=> {
-                navigate("/login")
-            })
-        },[])
+            .then(() => navigate("/profile"))
+            .catch(() => {
+                localStorage.removeItem("token");
+            });
+        },[navigate])
 
 
      const handleLogin = ()=>{

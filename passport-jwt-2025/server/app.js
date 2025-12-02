@@ -83,6 +83,7 @@ app.post("/login", async (req, res)=>{
         })
     }
 
+    
     const payload = {
         id: user._id,
         username: user.username,
@@ -95,7 +96,7 @@ app.post("/login", async (req, res)=>{
     return res.status(200).send({
         success: true,
         message: "User is logged in successfullu",
-        token: "Bearer" + token,
+       token: `Bearer ${token}`,
     })
 
 })

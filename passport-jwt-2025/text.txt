@@ -6,3 +6,18 @@
 
 
 // profile
+
+
+
+Road Map ->
+
+Introduction
+how token-based authentication works (theory)
+express server setup
+setting routes 
+setup MongoDB database and schema
+register a user
+log in as a user
+generate a token
+front-end with react.js
+End
